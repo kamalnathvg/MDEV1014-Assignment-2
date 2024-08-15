@@ -1,6 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
 import { Button, StyleSheet, Text, View } from 'react-native';
-import HomePage from './screens/HomePage';
 import RandomImageGenerator from './screens/Page1';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
@@ -37,7 +36,7 @@ const LogOutButton = ({navigation}: any) =>{
 export default function App() {
   return (
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='Tabs'>
+        <Stack.Navigator initialRouteName='HomePage'>
           <Stack.Screen 
             name='Register' 
             component={RegisterPage}

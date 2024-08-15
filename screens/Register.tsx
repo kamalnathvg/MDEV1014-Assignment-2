@@ -1,10 +1,10 @@
 import { Alert, Button, StyleSheet, Text, TextInput, TouchableOpacity } from "react-native"
 import React, { useState } from "react"
 import { SafeAreaView } from "react-native-safe-area-context"
-import * as SecureStore from 'expo-secure-store'
 
 import { auth } from "./Auth"
 import { createUserWithEmailAndPassword } from "firebase/auth"
+import WelcomeImage from "../components/welcome_image"
 
 const RegisterPage = ({navigation}: any) => {
     const [email, setEmail] = useState<string>('')
@@ -34,7 +34,8 @@ const RegisterPage = ({navigation}: any) => {
 
     return (
         <SafeAreaView>
-        <Text style={styles.title}></Text>
+        <WelcomeImage/>
+        <Text style={styles.title}>Register an Account</Text>
         <TextInput
         style={styles.input}
         placeholder="Email"
@@ -60,13 +61,15 @@ const RegisterPage = ({navigation}: any) => {
         <Button
         title="Register"
         onPress={onRegister}
+        color={'blue'}
+        
         ></Button>
         <TouchableOpacity
         onPress={() =>{
             navigation.pop()
         }}
         >
-            <Text>Already a user? Login</Text>
+            <Text style={styles.login_button}>Already a user? Login</Text>
         </TouchableOpacity>
         </SafeAreaView>
     )
@@ -79,7 +82,8 @@ const styles = StyleSheet.create({
     },
     title:{
         fontSize: 24,
-        marginBottom: 20
+        marginBottom: 20,
+        textAlign: 'center'
     },
     input: {
         height: 40,
@@ -87,7 +91,15 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         marginBottom: 20,
         paddingHorizontal: 10,
-        borderRadius: 5
+        borderRadius: 5,
+        marginHorizontal: 40
+    },
+    register_button:{
+        marginHorizontal:40,
+        backgroundColor: 'blue'
+    },
+    login_button:{
+        textAlign: 'center'
     }
 })
 

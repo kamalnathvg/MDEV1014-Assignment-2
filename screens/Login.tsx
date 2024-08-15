@@ -4,6 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context"
 import * as SecureStore from 'expo-secure-store'
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { auth } from "./Auth"
+import WelcomeImage from "../components/welcome_image"
 
 const LoginPage = ({navigation}: any) => {
     const [email, setEmail] = useState<string>('')
@@ -31,7 +32,8 @@ const LoginPage = ({navigation}: any) => {
    
     return (
         <SafeAreaView>
-        <Text style={styles.title}></Text>
+        <WelcomeImage/>
+        <Text style={styles.title}>Login To Your Account</Text>
         <TextInput
         style={styles.input}
         placeholder="Email"
@@ -50,6 +52,7 @@ const LoginPage = ({navigation}: any) => {
        <Button
         title="Login"
         onPress={onLogin}
+        color={'blue'}
         ></Button>
         <TouchableOpacity
         onPress={()=>{
@@ -57,7 +60,7 @@ const LoginPage = ({navigation}: any) => {
             navigation.navigate("Register")
         }}
         >
-            <Text>New user? Register</Text>
+            <Text style= {styles.register_button}>New user? Register</Text>
         </TouchableOpacity>
         </SafeAreaView>
     )
@@ -70,7 +73,8 @@ const styles = StyleSheet.create({
     },
     title:{
         fontSize: 24,
-        marginBottom: 20
+        marginBottom: 20,
+        textAlign: 'center'
     },
     input: {
         height: 40,
@@ -78,8 +82,17 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         marginBottom: 20,
         paddingHorizontal: 10,
-        borderRadius: 5
+        borderRadius: 5,
+        marginHorizontal: 40,
+    },
+    login_button:{
+        marginHorizontal:40,
+        backgroundColor: 'blue'
+    },
+    register_button:{
+        textAlign: 'center'
     }
+
 })
 
 export default LoginPage;
