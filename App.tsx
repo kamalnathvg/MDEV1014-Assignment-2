@@ -13,6 +13,7 @@ import RegisterPage from './screens/Register';
 import LoginPage from './screens/Login';
 import {auth} from './screens/Auth'
 import { signOut } from 'firebase/auth';
+import Tabs from './components/Tabs';
 
 
 
@@ -23,7 +24,8 @@ const LogOutButton = ({navigation}: any) =>{
     <View>
       <Button
       title='Log Out'
-      onPress={() => {
+      onPress={async() => {
+        await signOut(auth)
         navigation.navigate("Login")
       }}
       />
@@ -35,7 +37,7 @@ const LogOutButton = ({navigation}: any) =>{
 export default function App() {
   return (
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='HomePage'>
+        <Stack.Navigator initialRouteName='Tabs'>
           <Stack.Screen 
             name='Register' 
             component={RegisterPage}
@@ -52,18 +54,13 @@ export default function App() {
             />
           <Stack.Screen 
             name='HomePage' 
-            component={HomePage}
+            component={Tabs}
             options={({navigation}) =>({
+              headerShown: true,
               headerLeft: () => null,
               headerRight: () => <LogOutButton navigation={navigation}/>
             })
-          }
-            />
-          <Stack.Screen name='Page1' component={Page1}/>
-          <Stack.Screen name='Page2' component={Page2}/>
-          <Stack.Screen name='Page3' component={Page3}/>
-          <Stack.Screen name='Page4' component={Page4}/>
-          <Stack.Screen name='Page5' component={Page5}/>
+          }/>
         </Stack.Navigator>
       </NavigationContainer>
       );
